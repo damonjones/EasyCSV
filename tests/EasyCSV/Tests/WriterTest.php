@@ -10,28 +10,49 @@ class WriterTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->_writer = new \EasyCSV\Writer(__DIR__ . '/write.csv');
+        $this->_writer = new \EasyCSV\Writer(__DIR__.'/write.csv');
     }
 
-    public function testWriteRow()
+    public function testWriteRowFromString()
     {
+        $this->_writer->writeRow('column1, column2, column3');
         $this->_writer->writeRow('test1, test2, test3');
+        unset($this->_writer);
+
+        $reader = new \EasyCSV\Reader(__DIR__.'/write.csv');
+        $results = $reader->getAll();
+
+        $expected = array(
+            array(
+                'column1' => 'test1',
+                'column2' => 'test2',
+                'column3' => 'test3'
+            )
+        );
+        $this->assertEquals($expected, $results);
+    }
+
+    public function testWriteRowFromArray()
+    {
+        $data = array(
+                'column1' => 'test1',
+                'column2' => 'test2',
+                'column3' => 'test3'
+        );
+
+        $this->_writer->writeRow(array('column1', 'column2', 'column3'));
+        $this->_writer->writeRow($data);
+        unset($this->_writer);
+
+        $reader = new \EasyCSV\Reader(__DIR__.'/write.csv');
+        $results = $reader->getRow();
+
+        $this->assertEquals($data, $results);
     }
 
     public function testWriteFromArray()
     {
-        $this->_writer->writeRow('column1, column2, column3');
-        $this->_writer->writeFromArray(array(
-            '1test1, 1test2ing this out, 1test3',
-            array('2test1', '2test2 ing this out ok', '2test3')
-        ));
-    }
-
-    public function testReadWrittenFile()
-    {
-        $reader = new \EasyCSV\Reader(__DIR__ . '/write.csv');
-        $results = $reader->getAll();
-        $expected = array(
+        $data = array(
             array(
                 'column1' => '1test1',
                 'column2' => '1test2ing this out',
@@ -43,6 +64,13 @@ class WriterTest extends \PHPUnit_Framework_TestCase
                 'column3' => '2test3'
             )
         );
-        $this->assertEquals($expected, $results);
+
+        $this->_writer->writeFromArray($data);
+        unset($this->_writer);
+
+        $reader = new \EasyCSV\Reader(__DIR__.'/write.csv');
+        $results = $reader->getAll();
+
+        $this->assertEquals($data, $results);
     }
 }
