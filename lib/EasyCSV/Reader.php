@@ -11,7 +11,6 @@ class Reader extends AbstractBase
     public function __construct($path, $delimiter = ',', $enclosure = '"')
     {
         parent::__construct($path, 'r', $delimiter, $enclosure);
-        $this->_headers = $this->getRow();
         $this->_line    = 0;
     }
 
@@ -23,6 +22,11 @@ class Reader extends AbstractBase
     public function setHeaders(array $headers)
     {
         $this->_headers = $headers;
+    }
+
+    public function readHeaders()
+    {
+        $this->_headers = $this->getRow();
     }
 
     public function getRow()
@@ -39,7 +43,7 @@ class Reader extends AbstractBase
 
             $this->__line++;
 
-            return count($this->_headers) ? array_combine($this->_headers, $row) : $row;
+            return $this->_headers ? array_combine($this->_headers, $row) : $row;
         } else {
             // fgetcsv returned false, so we do too
             return false;

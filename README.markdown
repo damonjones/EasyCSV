@@ -8,6 +8,15 @@ To read CSV files we need to instantiate the EasyCSV reader class:
 
     $reader = new \EasyCSV\Reader('read.csv');
 
+If the first row of the CSV file is a headers (consisting of column names), then you can read it in:
+    $reader->readHeaders();
+
+If you want to manually set the headers, then pass an array of column names:
+
+    $reader->setHeaders(array('column1', 'column2', 'column3'));
+
+If headers are set, each row of returned data will be an associative array with the column names as keys.
+
 You can iterate over the rows one at a time:
 
     while ($row = $reader->getRow()) {

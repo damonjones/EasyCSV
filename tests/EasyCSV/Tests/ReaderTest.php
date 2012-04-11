@@ -11,11 +11,12 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->_reader = new \EasyCSV\Reader(__DIR__.'/read.csv');
+        $this->_reader->readHeaders();
     }
 
     public function testOneAtAtime()
     {
-        while($row = $this->_reader->getRow()) {
+        while ($row = $this->_reader->getRow()) {
             $this->assertTrue(is_array($row));
             $this->assertEquals(3, count($row));
         }

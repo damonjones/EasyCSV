@@ -15,32 +15,19 @@ class WriterTest extends \PHPUnit_Framework_TestCase
 
     public function testWriteRowFromString()
     {
-        $this->_writer->writeRow('column1, column2, column3');
         $this->_writer->writeRow('test1, test2, test3');
         unset($this->_writer);
 
         $reader = new \EasyCSV\Reader(__DIR__.'/write.csv');
-        $results = $reader->getAll();
+        $results = $reader->getRow();
 
-        $expected = array(
-            array(
-                'column1' => 'test1',
-                'column2' => 'test2',
-                'column3' => 'test3'
-            )
-        );
+        $expected = array('test1', 'test2', 'test3');
         $this->assertEquals($expected, $results);
     }
 
     public function testWriteRowFromArray()
     {
-        $data = array(
-                'column1' => 'test1',
-                'column2' => 'test2',
-                'column3' => 'test3'
-        );
-
-        $this->_writer->writeRow(array('column1', 'column2', 'column3'));
+        $data = array('test1', 'test2', 'test3');
         $this->_writer->writeRow($data);
         unset($this->_writer);
 
@@ -69,6 +56,7 @@ class WriterTest extends \PHPUnit_Framework_TestCase
         unset($this->_writer);
 
         $reader = new \EasyCSV\Reader(__DIR__.'/write.csv');
+        $reader->readHeaders();
         $results = $reader->getAll();
 
         $this->assertEquals($data, $results);
