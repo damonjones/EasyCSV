@@ -8,6 +8,8 @@ To read CSV files we need to instantiate the EasyCSV reader class:
 
     $reader = new \EasyCSV\Reader('read.csv');
 
+If the first row of the file has column names, they will be read and used as keys for the returned row data.
+If the file doesn't have a header row then you can pass a flag in the constructor to disable this behaviour.
 If you want to manually set the headers, then pass an array of column names:
 
     $reader->setHeaders(array('column1', 'column2', 'column3'));
@@ -44,3 +46,7 @@ You can also write several rows at once:
             'value1, value2, value3',
             array('value1', 'value2', 'value3')
     ));
+
+## TAB or other-delimeted files
+Both Reader and Writer classes will accept a delimiter character (default ',') and an enclosure character (default '"').
+In this case, you should replace the comma with whichever delimeter you have set in all the examples above.
