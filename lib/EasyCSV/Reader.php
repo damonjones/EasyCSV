@@ -52,11 +52,13 @@ class Reader extends AbstractBase
      *
      * @param Boolean $trimValues A flag to specify whether to trim the values read from the CSV file
      *
-     * @return void
+     * @return object
      */
     public function setTrimValues(Boolean $trimValues)
     {
         $this->_trimValues = $trimValues;
+
+        return $this;
     }
 
     /**
@@ -64,11 +66,13 @@ class Reader extends AbstractBase
      *
      * @param array $headers The column headers
      *
-     * @return void
+     * @return object
      */
     public function setHeaders(array $headers)
     {
         $this->_headers = $headers;
+
+        return $this;
     }
 
     /**

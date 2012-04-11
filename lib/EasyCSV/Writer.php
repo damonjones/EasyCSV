@@ -44,7 +44,7 @@ class Writer extends AbstractBase
      * @param array   $array        An array of values to write
      * @param boolean $writeHeaders Whether to use the array keys to write a row of headers to the CSV file
      *
-     * @return void
+     * @return object
      */
     public function writeFromArray(array $array, $writeHeaders = true)
     {
@@ -55,5 +55,7 @@ class Writer extends AbstractBase
         foreach ($array as $key => $value) {
             $this->writeRow($value);
         }
+
+        return $this;
     }
 }
