@@ -32,7 +32,7 @@ To write CSV files we need to instantiate the EasyCSV writer class:
 
     $writer = new \EasyCSV\Writer('write.csv');
 
-You can write a row by passing a commas separated string:
+You can write a row by passing a comma-separated string:
 
     $writer->writeRow('column1, column2, column3');
 
@@ -47,6 +47,6 @@ You can also write several rows at once:
             array('value1', 'value2', 'value3')
     ));
 
-## TAB or other-delimeted files
+## TAB or other-delimited files
 Both Reader and Writer classes will accept a delimiter character (default ',') and an enclosure character (default '"').
 In this case, you should replace the comma with whichever delimeter you have set in all the examples above.
