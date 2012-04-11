@@ -41,7 +41,7 @@ class Reader extends AbstractBase
                 $row = array_map('trim', $row);
             }
 
-            $this->__line++;
+            $this->_line++;
 
             return $this->_headers ? array_combine($this->_headers, $row) : $row;
         } else {
