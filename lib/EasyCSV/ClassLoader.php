@@ -14,12 +14,11 @@ namespace EasyCSV;
  *     $classLoader->register();
  *
  * @package EasyCSV
- * @author Jonathan H. Wage <jonwage@gmail.com>
- * @author Roman S. Borschel <roman@code-factory.org>
- * @author Matthew Weier O'Phinney <matthew@zend.com>
- * @author Kris Wallsmith <kris.wallsmith@gmail.com>
- * @author Fabien Potencier <fabien.potencier@symfony-project.org>
- 
+ * @author  Jonathan H. Wage <jonwage@gmail.com>
+ * @author  Roman S. Borschel <roman@code-factory.org>
+ * @author  Matthew Weier O'Phinney <matthew@zend.com>
+ * @author  Kris Wallsmith <kris.wallsmith@gmail.com>
+ * @author  Fabien Potencier <fabien.potencier@symfony-project.org>
  */
 class ClassLoader
 {
@@ -31,8 +30,9 @@ class ClassLoader
     /**
      * Creates a new <tt>ClassLoader</tt> that loads classes of the
      * specified namespace.
-     * 
-     * @param string $ns The namespace to use.
+     *
+     * @param string $ns          The namespace to use.
+     * @param string $includePath The include path to use.
      */
     public function __construct($ns = null, $includePath = null)
     {
@@ -42,7 +42,7 @@ class ClassLoader
 
     /**
      * Sets the namespace separator used by classes in the namespace of this class loader.
-     * 
+     *
      * @param string $sep The separator to use.
      */
     public function setNamespaceSeparator($sep)
@@ -62,7 +62,7 @@ class ClassLoader
 
     /**
      * Sets the base include path for all class files in the namespace of this class loader.
-     * 
+     *
      * @param string $includePath
      */
     public function setIncludePath($includePath)
@@ -82,7 +82,7 @@ class ClassLoader
 
     /**
      * Sets the file extension of class files in the namespace of this class loader.
-     * 
+     *
      * @param string $fileExtension
      */
     public function setFileExtension($fileExtension)
@@ -120,6 +120,7 @@ class ClassLoader
      * Loads the given class or interface.
      *
      * @param string $className The name of the class to load.
+     *
      * @return void
      */
     public function loadClass($className)
