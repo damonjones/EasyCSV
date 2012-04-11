@@ -11,7 +11,6 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->_reader = new \EasyCSV\Reader(__DIR__.'/read.csv');
-        $this->_reader->readHeaders();
     }
 
     public function testOneAtAtime()

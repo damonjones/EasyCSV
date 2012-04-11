@@ -18,7 +18,7 @@ class WriterTest extends \PHPUnit_Framework_TestCase
         $this->_writer->writeRow('test1, test2, test3');
         unset($this->_writer);
 
-        $reader = new \EasyCSV\Reader(__DIR__.'/write.csv');
+        $reader = new \EasyCSV\Reader(__DIR__.'/write.csv', ',', '"', false);
         $results = $reader->getRow();
 
         $expected = array('test1', 'test2', 'test3');
@@ -31,7 +31,7 @@ class WriterTest extends \PHPUnit_Framework_TestCase
         $this->_writer->writeRow($data);
         unset($this->_writer);
 
-        $reader = new \EasyCSV\Reader(__DIR__.'/write.csv');
+        $reader = new \EasyCSV\Reader(__DIR__.'/write.csv', ',', '"', false);
         $results = $reader->getRow();
 
         $this->assertEquals($data, $results);
@@ -56,7 +56,6 @@ class WriterTest extends \PHPUnit_Framework_TestCase
         unset($this->_writer);
 
         $reader = new \EasyCSV\Reader(__DIR__.'/write.csv');
-        $reader->readHeaders();
         $results = $reader->getAll();
 
         $this->assertEquals($data, $results);
