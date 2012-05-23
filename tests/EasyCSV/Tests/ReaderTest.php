@@ -2,7 +2,7 @@
 
 namespace EasyCSV\Tests;
 
-require_once __DIR__ . '/TestInit.php';
+use EasyCSV\Reader;
 
 class ReaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,7 +10,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->_reader = new \EasyCSV\Reader(__DIR__.'/read.csv');
+        $this->_reader = new Reader(__DIR__.'/read.csv');
     }
 
     public function testOneAtAtime()
