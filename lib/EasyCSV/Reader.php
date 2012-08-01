@@ -106,7 +106,7 @@ class Reader extends AbstractBase
 
         $arr = $this->_headers ? @array_combine($this->_headers, $row) : $row;
 
-        if (null === $arr) {
+        if (false === $arr) {
             throw new \Exception('Number of keys and columns must match.');
         }
 
