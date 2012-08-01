@@ -2,6 +2,9 @@
 
 namespace EasyCSV;
 
+use EasyCSV\Exception\FileException;
+use EasyCSV\Exception\DataException;
+
 /**
  * Reader - Reads from CSV files
  */
@@ -85,7 +88,7 @@ class Reader extends AbstractBase
         $row = @fgetcsv($this->_handle, $maxLength, $this->_delimiter, $this->_enclosure);
 
         if (null === $row) {
-            throw new \Exception('Invalid file handle.');
+            throw new FileException('Invalid file handle.');
         }
 
         // fgetcsv returned false, so we do too (error or end of file)
@@ -107,7 +110,7 @@ class Reader extends AbstractBase
         $arr = $this->_headers ? @array_combine($this->_headers, $row) : $row;
 
         if (false === $arr) {
-            throw new \Exception('Number of keys and columns must match.');
+            throw new DataException('Number of keys and columns must match.');
         }
 
         return $arr;
