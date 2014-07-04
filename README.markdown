@@ -50,3 +50,5 @@ You can also write several rows at once:
 ## TAB or other-delimited files
 Both Reader and Writer classes will accept a delimiter character (default ',') and an enclosure character (default '"').
 In this case, you should replace the comma with whichever delimeter you have set in all the examples above.
+
+[ ![Codeship Status for damonjones/EasyCSV](https://www.codeship.io/projects/dfd77920-e560-0131-e6bd-3ae90a6b4888/status)](https://www.codeship.io/projects/25741)
